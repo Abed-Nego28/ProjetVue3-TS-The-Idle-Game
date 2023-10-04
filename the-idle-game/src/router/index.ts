@@ -4,15 +4,16 @@ import InventoryView from "@/views/InventoryView.vue";
 import ShopView from "@/views/ShopView.vue";
 import ChallengesView from "@/views/ChallengesView.vue";
 import HistoryView from "@/views/HistoryView.vue";
+import HomePageView from "@/views/HomePageView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    /*{
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },*/
+    {
+      path: '/homepage',
+      name: 'homepage',
+      component: HomePageView
+    },
     {
       path: '/inventory',
       name: 'inventory',

@@ -8,8 +8,11 @@ import {RouterLink} from "vue-router";
       <div class="gold">
         <h3>Or possédé : </h3>
       </div>
-      <div>
+      <div class="elixir">
         <h3>Femmes possédé :</h3>
+      </div>
+      <div class="homepage">
+        <h3><RouterLink to="/homepage">HomePage</RouterLink></h3>
       </div>
       <div class="inventory">
         <h3><RouterLink to="/inventory">Inventaire</RouterLink></h3>
