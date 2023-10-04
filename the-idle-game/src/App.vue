@@ -1,28 +1,14 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import HomeView from "@/views/HomeView.vue";
 </script>
 
 <template>
   <header>
-    <div class="gold">
-      <h3><a>Or possédé : </a></h3>
-    </div>
-    <div>
-      <h3><a>Elixir possédé :</a></h3>
-    </div>
-    <div>
-      <h3><a>Inventaire</a></h3>
-    </div>
-    <div>
-      <h3><a>Boutique</a></h3>
-    </div>
-    <div>
-      <h3><a>Défis</a></h3>
-    </div>
-    <div>
-      <h3><a>Historique</a></h3>
-    </div>
+    <HomeView />
   </header>
+  <RouterView />
+
 </template>
 
 <style scoped>
