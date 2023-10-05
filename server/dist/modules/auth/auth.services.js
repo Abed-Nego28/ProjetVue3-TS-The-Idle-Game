@@ -16,6 +16,7 @@ async function register(body) {
     await User_1.Users.insertOne({
         username: body.username,
         password: hashedPassword,
+        gold: 500,
         token: token,
         createdAt: new Date()
     });

@@ -2,6 +2,9 @@
 import axios from "axios";
 import type {Users} from "@/types/users.type";
 import {reactive} from "vue";
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
 
 const users = reactive<Users>(
     {
@@ -15,6 +18,8 @@ const handleSubmit = (e) => {
   axios.post('http://localhost:3001/auth/login', users)
       .then((response) => {
         console.log(response);
+        router.push({name: 'homepage'})
+        console.log(router)
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +31,7 @@ const handleSubmit = (e) => {
 <template>
   <div class="login">
     <h1>Login</h1>
-    <form @submit.prevent="handleSubmit">
+    <form @submit="handleSubmit">
       <div>
         <label for="pseudo" >Pseudo : </label>
         <input type="text" placeholder="pseudo" v-model="users.username">

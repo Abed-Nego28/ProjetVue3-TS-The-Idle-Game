@@ -15,6 +15,7 @@ export async function register(body: AuthRegisterBody) {
     await Users.insertOne({
         username: body.username,
         password: hashedPassword,
+        gold: 500,
         token: token,
         createdAt: new Date()
     })
