@@ -26,7 +26,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
 
 const showUsineSquare = ref(false);
 const usineType = ref('');
@@ -43,6 +44,22 @@ function hideSquare() {
   // Cacher le carré lorsque l'utilisateur quitte une usine
   showUsineSquare.value = false;
 }
+
+const getUsines = () => {
+  axios.get("http://localhost:3001/usines")
+  .then((response) => {
+    console.log("response", response);
+    
+  })
+  .catch((err) => {
+    console.log("err", err);
+    
+  })
+}
+onMounted(() => {
+  getUsines()
+})
+
 </script>
 
 <style scoped>

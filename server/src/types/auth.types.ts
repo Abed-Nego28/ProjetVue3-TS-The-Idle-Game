@@ -14,3 +14,10 @@ export interface SimpleUser {
     username: string
     createdAt: Date
 }
+
+export interface Usine {
+    name: string
+    gain_per_level: number
+    cost: number
+    level: number
+}
