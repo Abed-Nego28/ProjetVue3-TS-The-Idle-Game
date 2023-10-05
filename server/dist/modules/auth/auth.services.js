@@ -24,8 +24,9 @@ async function register(body) {
 exports.register = register;
 async function login(body) {
     const user = await User_1.Users.findOne({ username: body.username });
+    console.log(user);
     if (!user) {
-        return { success: false, message: 'Bad password' };
+        return { success: false, message: 'Error' };
     }
     const hashedPassword = crypto_1.default.createHash('sha256').update(body.password).digest('hex');
     if (user.password !== hashedPassword) {

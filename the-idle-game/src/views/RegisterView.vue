@@ -9,9 +9,7 @@ const users = reactive<UserRegister>({
   confirmpassword: "",
 })
 const handleSubmit = (e) => {
-  console.log('submit')
   e.preventDefault()
-
   if(users.password !== users.confirmpassword){
     return;
   }
@@ -44,6 +42,7 @@ const handleSubmit = (e) => {
     </div>
     <button>Submit</button>
   </form>
+  <p>already a account ? <a href="login">login</a></p>
 </template>
 
 <style scoped>
