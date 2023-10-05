@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HomeView from "@/views/HomeView.vue";
+import LoginView from "@/views/LoginView.vue";
+
 </script>
 
 <template>
-  <header>
-    <HomeView />
-  </header>
-  <RouterView />
-
+  <div v-if="1">
+    <header>
+      <HomeView />
+    </header>
+    <RouterView />
+    <div id="app">
+    </div>
+  </div>
+  <div v-else>
+    <LoginView />
+  </div>
 </template>
 
 <style scoped>
