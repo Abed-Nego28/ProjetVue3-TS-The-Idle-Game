@@ -4,11 +4,14 @@ import HomeView from "@/views/HomeView.vue";
 </script>
 
 <template>
-  <header>
-    <HomeView />
-  </header>
-  <RouterView />
-
+  <div>
+    <header>
+      <HomeView />
+    </header>
+    <RouterView />
+    <div id="app">
+    </div>
+  </div>
 </template>
 
 <style scoped>

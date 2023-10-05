@@ -15,6 +15,7 @@ export async function register(body: AuthRegisterBody) {
     await Users.insertOne({
         username: body.username,
         password: hashedPassword,
+        gold: 500,
         token: token,
         createdAt: new Date()
     })
@@ -24,8 +25,9 @@ export async function register(body: AuthRegisterBody) {
 
 export async function login(body: AuthRegisterBody) {
     const user = await Users.findOne({ username: body.username })
+    console.log(user);
     if (!user) {
-        return { success: false, message: 'Bad password' }
+        return { success: false, message: 'Error' }
     }
     
     const hashedPassword = crypto.createHash('sha256').update(body.password).digest('hex')
