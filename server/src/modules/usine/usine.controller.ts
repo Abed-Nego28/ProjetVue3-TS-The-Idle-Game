@@ -1,7 +1,8 @@
 import {Express} from "express";
 import {getUsines} from "@/modules/usine/usine.services";
 import {Users} from "@/db/models/User";
-import {Usines} from "@/db/models/Usine";
+import {Usines} from "@/db/models/Shop";
+import {ObjectId} from "mongodb";
 
 export function usinesController(app: Express) {
     app.get('/usines', async (_req, res) => {
@@ -27,30 +28,28 @@ export function usinesController(app: Express) {
         }
     })
 
-    app.get('/lookup/:id', async (_req, res) => {
+    // @ts-ignore
+    app.post('/get/usines/:id', async (req, res) => {
         try {
-            const result = Users.aggregate([
-                {
-                    $lookup: {
-                        from: "users",
-                        localField: "_id",
-                        foreignField: "_id",
-                        as: "user_id"
-                    }
-                }
-            ]);
-            res.json(result)
-        } catch (err) {
-            console.log("Erreur", err)
-            res.status(500).json({ message: "Erreur" })
-        }
-    })
+            let usineId = new ObjectId(req.params.id);
+            let userId = new ObjectId(req.body.userId);
+            const result = await Usines.findOne({ _id: usineId });
+            const user = await Users.findOne({ _id: userId });
 
-    app.post('/get/usines:id', async (req, res) => {
-        try {
-            // @ts-ignore
-            const result = await Usines.findOne({ _id: req.params.id });
-            res.json(result)
+            if(!result) {
+                return res.status(404).json({ message: "Usine not found" })
+            }
+            if(!user) {
+                return res.status(404).json({ message: "User not found" })
+            }
+            if(user?.gold < result.cost){
+                return res.status(500).json({ message: "Not enough gold" })
+            }
+
+            const newUsine = await Usines.updateOne({ _id: usineId }, { $set: { user: user  } });
+            const newGold = await Users.updateOne({ _id: userId }, { $set: { gold: user.gold - result.cost } });
+
+            res.json({ user: user?._id, usine: newUsine, gold: newGold})
         } catch (err) {
             console.log("Erreur", err)
             res.status(500).json({ message: "Erreur" })

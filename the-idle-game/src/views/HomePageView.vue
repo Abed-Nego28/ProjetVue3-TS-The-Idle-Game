@@ -31,7 +31,7 @@ const performLookUp = (usineId: string) => {
       });
 }
 
-const upgradeUsine = (usineId : string) => {
+const upgradeUsine = (usineId : ObjectId) => {
   axios.get(`http://localhost:3001/upgrade/${usineId}`)
       .then((response) => {
         console.log(response.data);
@@ -54,7 +54,7 @@ const upgradeUsine = (usineId : string) => {
           {{ usine.name }} - coût: {{ usine.cost }} - gain par sec: {{ usine.gain_per_seconde }} - lvl: {{ usine.level }}
         </li>
         <button @click="">Acheter</button>
-        <button @click="upgradeUsine(usineId)">Amélioré</button>
+        <button @click="upgradeUsine(usine._id)">Amélioré</button>
       </ul>
     </div>
   </div>

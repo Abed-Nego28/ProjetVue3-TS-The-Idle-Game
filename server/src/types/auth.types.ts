@@ -1,3 +1,4 @@
+
 export interface AuthRegisterBody {
     username: string
     password: string
@@ -21,6 +22,7 @@ export interface Usine {
     gain_per_seconde: number
     cost: number
     level: number
+    user: SimpleUser
 }
 
 export interface Shop {

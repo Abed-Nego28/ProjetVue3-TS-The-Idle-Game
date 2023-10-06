@@ -2,6 +2,7 @@
 import axios from "axios";
 import {onMounted, ref} from "vue";
 import type { Usine } from "@/types/usine.type";
+import type {Users} from "@/types/users.type";
 
 const usines = ref( [] as Usine[])
 const getShopItem = () => {
@@ -18,8 +19,20 @@ const getShopItem = () => {
 onMounted(() => {
   getShopItem()
 })
-
-
+let user = JSON.parse(localStorage.getItem('user') || '{}')
+let userId = user.user.id
+console.log("azeaeaz",user)
+const getUsine = (usineId: string) => {
+  axios.post(`http://localhost:3001/get/usines/${usineId}`, {
+    userId : userId
+  })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+}
 </script>
 
 <template>
@@ -30,7 +43,7 @@ onMounted(() => {
         <li>
           {{ usine.name }} - coût: {{ usine.cost }} - gain par sec: {{ usine.gain_per_seconde }} - lvl: {{ usine.level }}
         </li>
-        <button>Acheter</button>
+        <button @click="getUsine(usine._id)">Acheter</button>
       </ul>
     </div>
   </div>

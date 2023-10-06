@@ -18,6 +18,7 @@ const handleSubmit = (e) => {
   axios.post('http://localhost:3001/auth/login', users)
       .then((response) => {
         console.log(response);
+        localStorage.setItem('user', JSON.stringify(response.data))
         router.push({name: 'homepage'})
         console.log(router)
       })
