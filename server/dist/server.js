@@ -10,6 +10,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const auth_controller_1 = require("./modules/auth/auth.controller");
 const auth_middleware_1 = require("./modules/auth/auth.middleware");
 const shop_controller_1 = require("./modules/shop/shop.controller");
+const usine_controller_1 = require("./modules/usine/usine.controller");
 function initWebServer() {
     // Creation du serveur http
     const app = (0, express_1.default)();
@@ -26,6 +27,7 @@ function initWebServer() {
     // On enregistre nos controllers
     (0, auth_controller_1.registerAuthRoutes)(app);
     (0, shop_controller_1.shopController)(app);
+    (0, usine_controller_1.usinesController)(app);
     // On ecoute sur le port configuré avec le .env
     app.listen(process.env.NODE_PORT, () => {
         console.log(`Listening on http://localhost:${process.env.NODE_PORT}`);

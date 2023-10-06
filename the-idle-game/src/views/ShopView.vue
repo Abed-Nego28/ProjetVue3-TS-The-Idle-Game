@@ -18,6 +18,8 @@ const getShopItem = () => {
 onMounted(() => {
   getShopItem()
 })
+
+
 </script>
 
 <template>
@@ -26,7 +28,7 @@ onMounted(() => {
     <div>
       <ul v-for="usine in usines" :key="usine._id">
         <li>
-          {{ usine.name }} - coût: {{ usine.cost }} - gain par sec: {{ usine.gain_per_level }} - lvl: {{ usine.level }}
+          {{ usine.name }} - coût: {{ usine.cost }} - gain par sec: {{ usine.gain_per_seconde }} - lvl: {{ usine.level }}
         </li>
         <button>Acheter</button>
       </ul>

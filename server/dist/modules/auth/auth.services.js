@@ -35,7 +35,7 @@ async function login(body) {
     }
     const token = crypto_1.default.randomBytes(32).toString('hex');
     await User_1.Users.updateOne({ _id: user._id }, { $set: { token } });
-    return { success: true, token };
+    return { success: true, token, user: { id: user._id, username: user.username, gold: user.gold } };
 }
 exports.login = login;
 function findByToken(token) {

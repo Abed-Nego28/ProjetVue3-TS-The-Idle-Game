@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import { registerAuthRoutes } from './modules/auth/auth.controller'
 import { isLogin } from './modules/auth/auth.middleware'
 import {shopController} from "@/modules/shop/shop.controller";
+import {usinesController} from "@/modules/usine/usine.controller";
 
 export function initWebServer() {
     // Creation du serveur http
@@ -26,6 +27,7 @@ export function initWebServer() {
     // On enregistre nos controllers
     registerAuthRoutes(app)
     shopController(app)
+    usinesController(app)
     
     // On ecoute sur le port configuré avec le .env
     app.listen(process.env.NODE_PORT, () => {

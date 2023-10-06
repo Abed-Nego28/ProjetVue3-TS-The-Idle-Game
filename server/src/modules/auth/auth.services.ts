@@ -38,7 +38,7 @@ export async function login(body: AuthRegisterBody) {
     const token = crypto.randomBytes(32).toString('hex')
     await Users.updateOne({ _id: user._id }, { $set: { token } })
     
-    return { success: true, token }
+    return { success: true, token, user: { id:user._id, username: user.username, gold: user.gold }}
 }
 
 export function findByToken(token: string) {

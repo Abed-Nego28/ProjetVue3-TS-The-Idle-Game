@@ -18,14 +18,14 @@ export interface SimpleUser {
 
 export interface Usine {
     name: string
-    gain_per_level: number
+    gain_per_seconde: number
     cost: number
     level: number
 }
 
 export interface Shop {
     name: string
-    gain_per_level: number
+    gain_per_seconde: number
     cost: number
     level: number
 }
